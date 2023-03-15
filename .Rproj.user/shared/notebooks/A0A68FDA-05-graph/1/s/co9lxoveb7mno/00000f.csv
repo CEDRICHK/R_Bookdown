@@ -1,8 +1,0 @@
-"0","# Créer une matrice de données"
-"0","mat <- matrix(c(2, 3, 5, 4, 6, 8), nrow = 2, byrow = TRUE)"
-"0","rownames(mat) <- c(""Hommes"", ""Femmes"")"
-"0","colnames(mat) <- c(""Groupe A"", ""Groupe B"", ""Groupe C"")"
-"0",""
-"0","# Créer un graphique à barres"
-"0","barplot(mat, main = ""Graphique à barres"", xlab = ""Groupes"", ylab = ""Mesures"", "
-"0","        col = c(""red"", ""blue""), legend.text = rownames(mat))"
