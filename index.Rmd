@@ -39,14 +39,14 @@ Pour commencer, vous pouvez créer un nouveau projet R en utilisant le menu **Fi
 la fenêtre suivante, choisissez **New directory** pour créer un répertoire de travail sur votre ordinateur ou
 **Open directory** si vous avez déjà un répertoire de travail. Dans la fenêtre suivante, choisissez **New Project** et créez un répertoire **MyFirstProject** sur le bureau (ou ailleurs) et validez par **Create Project**.\
 
-![Voici un nouveau projet !](docs/R-bookdown_files/figure-html/new_project.png)
+![Voici un nouveau projet !](R-bookdown_files/figure-html/new_project.png)
 
 Créez un nouveau script R à l’intérieur du projet **MyFirstProject** en utilisant **File -> New File** et
 choisissez **Rscript**. Le nouveau script est ouvert dans une fenêtre **Untitled1**. Pour
 l’enregistrer, utilisez **File -> Save as** et donnez-lui un nom, par exemple **MyFirstScript**.\
 Il est automatiquement enregistré dans le répertoire MyFirstProject. Fermez RStudio avec **File -> Quit Session**.\ 
 
-![Mon premier script !](docs/R-bookdown_files/figure-html/myFirstScript.png)
+![Mon premier script !](R-bookdown_files/figure-html/myFirstScript.png)
 
 Vérifiez que dans le répertoire MyFirstProject vous avez maintenant ces trois éléments :
 
