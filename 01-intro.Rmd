@@ -322,11 +322,11 @@ Le résultat de l'appel de la fonction est 5.
 Les librairies de fonctions sont des **packages R qui contiennent des fonctions prédéfinies** et des outils pour effectuer des tâches spécifiques. Ces librairies peuvent être installées à partir des *dépôts CRAN ou des dépôts GitHub*. Les librairies les plus populaires incluent *ggplot2, dplyr, tidyr, lubridate et stringr*. Ces librairies peuvent être utilisées pour effectuer des tâches telles que le traitement de texte, la manipulation de données, la visualisation de données et le calcul statistique.   
 Pour installer un package sous RStudio, vous devez utiliser l'onglet *Packages* de la fenêtre en bas à droite, et on choisit *Install* pour installer le package. Sinon ceci se fait via la fonction `install.packages()`.
 
-![Installer un package sous CRAN ou à partir d'une archive!](~/Images/install_packages2.png)
+![Installer un package sous CRAN ou à partir d'une archive!](docs/R-bookdown_files/figure-html/install_packages2.png)
 
 Une fois le package installé, vous pouvez charger le package à l'aide de la fonction `library()`ou en cochant la case devant le package dans la fenêtre *Packages*. 
 
-![Charger un package comme dplyr!](~/Images/load_packages.png)
+![Charger un package comme dplyr!](docs/R-bookdown_files/figure-html/load_packages.png)
 
 Vous pouvez également utiliser la commande require() pour charger le package uniquement si le package n'est pas déjà chargé. Une fois le package chargé, vous pouvez utiliser les fonctions et les outils fournis par le package.   
 Le code ci-dessous permet d'installer et charger le package plyr.   
