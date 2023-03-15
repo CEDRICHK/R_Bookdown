@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 6 Les graphiques avec R | Initiation au langage R</title>
+  <meta name="description" content="Initiation au langage de programmation, R" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 6 Les graphiques avec R | Initiation au langage R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Initiation au langage de programmation, R" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 6 Les graphiques avec R | Initiation au langage R" />
+  
+  <meta name="twitter:description" content="Initiation au langage de programmation, R" />
+  
+
+<meta name="author" content="Cédric HASSEN-KHODJA" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="régression-linéaire.html"/>
+<link rel="next" href="liens-utiles.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Introduction à R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#quest-ce-que-le-logiciel-r"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que le logiciel R ?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#installer-r"><i class="fa fa-check"></i><b>1.2</b> Installer R</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#rstudio-desktop"><i class="fa fa-check"></i><b>1.3</b> RStudio Desktop</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#quelques-commandes-de-base-r"><i class="fa fa-check"></i><b>1.4</b> Quelques commandes de base R</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="le-langage-r.html"><a href="le-langage-r.html"><i class="fa fa-check"></i><b>2</b> Le langage R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="le-langage-r.html"><a href="le-langage-r.html#elément-de-base-du-langage-le-vecteur"><i class="fa fa-check"></i><b>2.1</b> Elément de base du langage : le vecteur</a></li>
+<li class="chapter" data-level="2.2" data-path="le-langage-r.html"><a href="le-langage-r.html#opérations-sur-les-vecteurs"><i class="fa fa-check"></i><b>2.2</b> Opérations sur les vecteurs</a></li>
+<li class="chapter" data-level="2.3" data-path="le-langage-r.html"><a href="le-langage-r.html#la-matrice-un-objet-à-deux-dimensions"><i class="fa fa-check"></i><b>2.3</b> La matrice : un objet à deux dimensions</a></li>
+<li class="chapter" data-level="2.4" data-path="le-langage-r.html"><a href="le-langage-r.html#la-liste"><i class="fa fa-check"></i><b>2.4</b> La liste</a></li>
+<li class="chapter" data-level="2.5" data-path="le-langage-r.html"><a href="le-langage-r.html#le-tableau-de-données"><i class="fa fa-check"></i><b>2.5</b> Le tableau de données</a></li>
+<li class="chapter" data-level="2.6" data-path="le-langage-r.html"><a href="le-langage-r.html#concaténer-des-objets-r-en-lignes-ou-en-colonnes"><i class="fa fa-check"></i><b>2.6</b> Concaténer des objets R en lignes ou en colonnes</a></li>
+<li class="chapter" data-level="2.7" data-path="le-langage-r.html"><a href="le-langage-r.html#les-fonctions-et-les-librairies-packages-r"><i class="fa fa-check"></i><b>2.7</b> Les fonctions et les librairies (packages) R</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="le-langage-r.html"><a href="le-langage-r.html#les-fonctions-r"><i class="fa fa-check"></i><b>2.7.1</b> Les fonctions R</a></li>
+<li class="chapter" data-level="2.7.2" data-path="le-langage-r.html"><a href="le-langage-r.html#les-librairies-de-fonctions-sous-r"><i class="fa fa-check"></i><b>2.7.2</b> Les librairies de fonctions sous R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="manipulation-des-données-sous-r.html"><a href="manipulation-des-données-sous-r.html"><i class="fa fa-check"></i><b>3</b> Manipulation des données sous R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="manipulation-des-données-sous-r.html"><a href="manipulation-des-données-sous-r.html#importer-un-jeu-de-données-sous-r"><i class="fa fa-check"></i><b>3.1</b> importer un jeu de données sous R</a></li>
+<li class="chapter" data-level="3.2" data-path="manipulation-des-données-sous-r.html"><a href="manipulation-des-données-sous-r.html#exporter-un-jeu-de-données-sous-r"><i class="fa fa-check"></i><b>3.2</b> Exporter un jeu de données sous R</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="statistiques-descriptives-avec-r.html"><a href="statistiques-descriptives-avec-r.html"><i class="fa fa-check"></i><b>4</b> Statistiques descriptives avec R</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="statistiques-descriptives-avec-r.html"><a href="statistiques-descriptives-avec-r.html#médianes-et-quantiles"><i class="fa fa-check"></i><b>4.1</b> Médianes et quantiles</a></li>
+<li class="chapter" data-level="4.2" data-path="statistiques-descriptives-avec-r.html"><a href="statistiques-descriptives-avec-r.html#la-moyenne-et-la-somme"><i class="fa fa-check"></i><b>4.2</b> La moyenne et la somme</a></li>
+<li class="chapter" data-level="4.3" data-path="statistiques-descriptives-avec-r.html"><a href="statistiques-descriptives-avec-r.html#la-variance-et-lécart-type"><i class="fa fa-check"></i><b>4.3</b> La variance et l’écart-type</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="régression-linéaire.html"><a href="régression-linéaire.html"><i class="fa fa-check"></i><b>5</b> Régression linéaire</a></li>
+<li class="chapter" data-level="6" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html"><i class="fa fa-check"></i><b>6</b> Les graphiques avec R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#gestion-des-graphiques-sous-rstudio"><i class="fa fa-check"></i><b>6.1</b> Gestion des graphiques sous RStudio</a></li>
+<li class="chapter" data-level="6.2" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#quelques-fonctions-graphiques"><i class="fa fa-check"></i><b>6.2</b> Quelques fonctions graphiques</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#la-fonction-plot"><i class="fa fa-check"></i><b>6.2.1</b> La fonction plot()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#la-fonction-pairs"><i class="fa fa-check"></i><b>6.2.2</b> La fonction pairs()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#la-fonction-pie"><i class="fa fa-check"></i><b>6.2.3</b> La fonction pie()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#la-fonction-hist"><i class="fa fa-check"></i><b>6.2.4</b> La fonction hist()</a></li>
+<li class="chapter" data-level="6.2.5" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#la-fonction-barplot"><i class="fa fa-check"></i><b>6.2.5</b> La fonction barplot()</a></li>
+<li class="chapter" data-level="6.2.6" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#la-fonction-boxplot"><i class="fa fa-check"></i><b>6.2.6</b> La fonction boxplot()</a></li>
+<li class="chapter" data-level="6.2.7" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#les-fonctions-de-tracé-de-courbes-de-niveau"><i class="fa fa-check"></i><b>6.2.7</b> Les fonctions de tracé de courbes de niveau</a></li>
+<li class="chapter" data-level="6.2.8" data-path="les-graphiques-avec-r.html"><a href="les-graphiques-avec-r.html#les-fonctions-de-cartographie"><i class="fa fa-check"></i><b>6.2.8</b> Les fonctions de cartographie</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="liens-utiles.html"><a href="liens-utiles.html"><i class="fa fa-check"></i><b>7</b> Liens utiles</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Initiation au langage R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="les-graphiques-avec-r" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapitre 6</span> Les graphiques avec R<a href="les-graphiques-avec-r.html#les-graphiques-avec-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="gestion-des-graphiques-sous-rstudio" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Gestion des graphiques sous RStudio<a href="les-graphiques-avec-r.html#gestion-des-graphiques-sous-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>RStudio possède une fenêtre graphique intégrée où les graphiques peuvent être affichés. Cette fenêtre peut être agrandie, réduite ou mise en plein écran, et permet également de zoomer sur des parties spécifiques du graphique. Cette fenêtre permet également d’enregistrer le graphique dans différents formats de fichiers, tels que PNG, PDF, JPEG, SVG, etc.</p>
+<div class="figure">
+<img src="/home/cedric/Images/rstudio_graph.png" alt="" />
+<p class="caption">Affichage d’un graphique sous RStudio!</p>
+</div>
+<p>On peut aussi, avant l’appel à la fonction graphique, ouvrir une nouvelle fenêtre graphique avec la fonction <code>x11()</code> qui fonctionne sur Linux et Windows ou son équivalent <code>windows()</code> (Windows uniquement), ou encore <code>quartz()</code> sous MacOS. Le graphique s’affichera toujours dans la dernière fenêtre graphique ouverte qui devient le périphérique (device) actif.
+On peut également ouvrir directement un fichier graphique avec la fonction <code>pdf()</code>, ou <code>jpeg()</code>… Taper <strong>?Devices</strong> pour connaître les différents périphériques utilisables.</p>
+<p>Dans RStudio, la fonction <code>dev.new()</code> ouvre un nouveau périphérique graphique. La fonction <code>dev.set()</code> permet de sélectionner un périphérique graphique existant. Elle peut être utilisée pour basculer entre les périphériques graphiques ouverts. Par exemple, si vous avez deux périphériques graphiques ouverts, vous pouvez utiliser dev.set(1) pour sélectionner le premier périphérique et dev.set(2) pour sélectionner le deuxième périphérique. La fonction <code>dev.off()</code> ferme le périphérique graphique actif. Cela peut être utile si vous avez plusieurs fenêtres graphiques ouvertes et que vous souhaitez en fermer une.</p>
+<p>Il est également possible de sauvegarder les graphiques créés dans RStudio en utilisant la fonction <code>dev.copy()</code>. Cette fonction copie le graphique actif vers un périphérique spécifié, tel qu’un fichier PDF ou une image PNG. Par exemple, dev.copy(pdf, “myplot.pdf”) copiera le graphique actif dans un fichier PDF nommé “plot1.pdf”.</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="les-graphiques-avec-r.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">X11</span>()   </span>
+<span id="cb111-2"><a href="les-graphiques-avec-r.html#cb111-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>,<span class="dv">30</span>,<span class="fl">0.1</span>)</span>
+<span id="cb111-3"><a href="les-graphiques-avec-r.html#cb111-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
+<span id="cb111-4"><a href="les-graphiques-avec-r.html#cb111-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, <span class="at">type=</span><span class="st">&quot;p&quot;</span>)</span>
+<span id="cb111-5"><a href="les-graphiques-avec-r.html#cb111-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.copy</span>(pdf, <span class="st">&quot;plot1.pdf&quot;</span>)</span>
+<span id="cb111-6"><a href="les-graphiques-avec-r.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>Enfin, il est possible de personnaliser la sortie graphique en modifiant les <strong>options</strong> de périphériques graphiques. Par exemple, vous pouvez spécifier la taille de la fenêtre graphique avec <em>options(“dev.size” = c(7, 5))</em> pour une fenêtre de 7 pouces de large et 5 pouces de haut. Vous pouvez également spécifier le type de périphérique graphique à utiliser par défaut avec options(“device” = “pdf”).</p>
+</div>
+<div id="quelques-fonctions-graphiques" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Quelques fonctions graphiques<a href="les-graphiques-avec-r.html#quelques-fonctions-graphiques" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="la-fonction-plot" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> La fonction plot()<a href="les-graphiques-avec-r.html#la-fonction-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La fonction <code>plot()</code> est une fonction de base de R qui permet de créer des graphiques. Elle est très versatile et permet de créer différents types de graphiques en fonction des arguments passés en entrée. Voici quelques exemples de graphiques que l’on peut créer avec la fonction plot():</p>
+<ol style="list-style-type: decimal">
+<li><p>Graphique de dispersion (scatterplot):</p>
+<p>Un graphique de dispersion permet de visualiser la relation entre deux variables continues. On peut créer un tel graphique avec plot() en passant en entrée les valeurs de la première variable sur l’axe des x et les valeurs de la deuxième variable sur l’axe des y. Par exemple:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="les-graphiques-avec-r.html#cb112-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb112-2"><a href="les-graphiques-avec-r.html#cb112-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb112-3"><a href="les-graphiques-avec-r.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/graph1-1.png" width="672" /></p></li>
+<li><p>Graphique de ligne:</p>
+<p>Un graphique de ligne permet de visualiser l’évolution d’une variable en fonction d’une autre variable (souvent une variable temporelle). On peut créer un tel graphique avec <code>plot()</code> en passant en entrée les valeurs de la première variable sur l’axe des x et les valeurs de la deuxième variable sur l’axe des y, et en spécifiant l’option <strong>type=“l”</strong>. Par exemple:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="les-graphiques-avec-r.html#cb113-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb113-2"><a href="les-graphiques-avec-r.html#cb113-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>)</span>
+<span id="cb113-3"><a href="les-graphiques-avec-r.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type=</span><span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/graph2-1.png" width="672" /></p></li>
+<li><p>Graphique en boîte (boxplot):</p>
+<p>Un graphique en boîte permet de visualiser la distribution d’une variable quantitative en fonction d’une variable qualitative. On peut créer un tel graphique avec <code>plot()</code> en passant en entrée la variable quantitative et la variable qualitative sous forme de facteur, et en spécifiant l’option type=“b”. Par exemple:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="les-graphiques-avec-r.html#cb114-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb114-2"><a href="les-graphiques-avec-r.html#cb114-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">each=</span><span class="dv">50</span>))</span>
+<span id="cb114-3"><a href="les-graphiques-avec-r.html#cb114-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y, x, <span class="at">type=</span><span class="st">&quot;b&quot;</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/graph3-1.png" width="672" /></p></li>
+</ol>
+</div>
+<div id="la-fonction-pairs" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> La fonction pairs()<a href="les-graphiques-avec-r.html#la-fonction-pairs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La fonction <code>pairs()</code> permet de créer une <strong>matrice de nuages de points pour visualiser les relations entre plusieurs variables</strong> dans un ensemble de données. Elle prend en entrée une matrice ou un data frame contenant les variables à afficher et affiche une matrice de nuages de points où chaque case représente la relation entre deux variables.</p>
+<p>Par exemple, supposons que nous avons un data.frame appelé <em>iris</em> contenant les mesures de longueur et de largeur des pétales et des sépales pour trois espèces de fleurs. Pour afficher une matrice de nuages de points pour toutes les combinaisons possibles de ces quatre variables, nous pouvons utiliser la fonction <code>pairs()</code> comme suit:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="les-graphiques-avec-r.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Charger le jeu de données iris</span></span>
+<span id="cb115-2"><a href="les-graphiques-avec-r.html#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;iris&quot;</span>)</span>
+<span id="cb115-3"><a href="les-graphiques-avec-r.html#cb115-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-4"><a href="les-graphiques-avec-r.html#cb115-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vecteur de couleurs pour chaque espèce</span></span>
+<span id="cb115-5"><a href="les-graphiques-avec-r.html#cb115-5" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;green&quot;</span>, <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb115-6"><a href="les-graphiques-avec-r.html#cb115-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb115-7"><a href="les-graphiques-avec-r.html#cb115-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Utiliser la fonction pairs() avec l&#39;argument col pour colorer chaque point en fonction de l&#39;espèce correspondante</span></span>
+<span id="cb115-8"><a href="les-graphiques-avec-r.html#cb115-8" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(iris[,<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>], <span class="at">col =</span> cols[iris<span class="sc">$</span>Species])</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/pairs-1.png" width="672" /></p>
+<p>Cela va afficher une matrice de 12 nuages de points, montrant les relations entre chaque paire de variables.<br />
+Ici, nous avons défini le vecteur cols pour contenir une couleur pour chaque espèce (red pour Setosa, green pour Versicolor et blue pour Virginica). Ensuite, nous avons utilisé l’argument col avec le vecteur de couleurs correspondant à chaque espèce (cols[iris$Species]) pour colorer chaque point en fonction de l’espèce correspondante.</p>
+</div>
+<div id="la-fonction-pie" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> La fonction pie()<a href="les-graphiques-avec-r.html#la-fonction-pie" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La fonction <code>pie</code> permet de représenter graphiquement des <strong>proportions</strong> dans un graphique circulaire.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="les-graphiques-avec-r.html#cb116-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.1</span>, <span class="fl">0.4</span>)</span>
+<span id="cb116-2"><a href="les-graphiques-avec-r.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(x)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/pie-1.png" width="672" /></p>
+<p>Le graphique qui en résulte présente un cercle divisé en quatre sections représentant chacune une proportion de l’ensemble.</p>
+</div>
+<div id="la-fonction-hist" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> La fonction hist()<a href="les-graphiques-avec-r.html#la-fonction-hist" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La fonction <code>hist()</code> en R est utilisée pour créer un <strong>histogramme</strong>, qui est un type de graphique qui représente la distribution des valeurs numériques d’un vecteur. L’histogramme est un graphique en barres, où chaque barre représente une plage de valeurs, appelée <em>bin ou classe</em>, et la hauteur de la barre représente le nombre de valeurs dans cette plage.</p>
+<p>La fonction <code>hist()</code> prend en entrée un vecteur de données numériques et peut également accepter des arguments optionnels pour personnaliser le graphique, tels que le nombre de classes (bins) souhaité, les couleurs des barres, la couleur de fond, les étiquettes des axes, etc.</p>
+<p>Voici un exemple d’utilisation de la fonction “hist()” pour créer un histogramme à partir d’un vecteur de données numériques “x”:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="les-graphiques-avec-r.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un vecteur de données</span></span>
+<span id="cb117-2"><a href="les-graphiques-avec-r.html#cb117-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span>
+<span id="cb117-3"><a href="les-graphiques-avec-r.html#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-4"><a href="les-graphiques-avec-r.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un histogramme avec 5 classes</span></span>
+<span id="cb117-5"><a href="les-graphiques-avec-r.html#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">5</span>, <span class="at">main =</span> <span class="st">&quot;Histogramme de x&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Valeur de x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Fréquence&quot;</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/hist-1.png" width="672" /></p>
+<p>Dans cet exemple, la fonction <code>hist()</code> crée un histogramme avec 5 classes en utilisant le vecteur “x”, et l’option <strong>breaks</strong>. Les options <strong>main, xlab, ylab</strong> sont utilisées pour ajouter des étiquettes de titre et d’axes au graphique.<br />
+A la place des fréquences, on peut afficher des <strong>densités avec l’option freq=F</strong>. On peut également ajouter une courbe de densité en utilisant la fonction <code>lines()</code> par-dessus la fonction de densité <code>density()</code>.</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="les-graphiques-avec-r.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un vecteur de données</span></span>
+<span id="cb118-2"><a href="les-graphiques-avec-r.html#cb118-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span>
+<span id="cb118-3"><a href="les-graphiques-avec-r.html#cb118-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-4"><a href="les-graphiques-avec-r.html#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un histogramme avec 5 classes</span></span>
+<span id="cb118-5"><a href="les-graphiques-avec-r.html#cb118-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">5</span>, <span class="at">freq=</span>F, <span class="at">main =</span> <span class="st">&quot;Histogramme de x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densité&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Valeur de x&quot;</span>)</span>
+<span id="cb118-6"><a href="les-graphiques-avec-r.html#cb118-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(x), <span class="at">col=</span><span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/hist2-1.png" width="672" /></p>
+<p>On peut récupérer plus d’informations sur l’histogramme en affichant le résultat de la fonction <code>hist</code>.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="les-graphiques-avec-r.html#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un vecteur de données</span></span>
+<span id="cb119-2"><a href="les-graphiques-avec-r.html#cb119-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">20</span>)</span>
+<span id="cb119-3"><a href="les-graphiques-avec-r.html#cb119-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb119-4"><a href="les-graphiques-avec-r.html#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un histogramme avec 5 classes</span></span>
+<span id="cb119-5"><a href="les-graphiques-avec-r.html#cb119-5" aria-hidden="true" tabindex="-1"></a>hist <span class="ot">&lt;-</span> <span class="fu">hist</span>(x, <span class="at">breaks =</span> <span class="dv">5</span>, <span class="at">freq=</span>F, <span class="at">main =</span> <span class="st">&quot;Histogramme de x&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Densité&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Valeur de x&quot;</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/infos_hist2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="les-graphiques-avec-r.html#cb120-1" aria-hidden="true" tabindex="-1"></a>hist</span></code></pre></div>
+<pre><code>## $breaks
+## [1]  0  5 10 15 20
+## 
+## $counts
+## [1] 2 6 4 5
+## 
+## $density
+## [1] 0.02352941 0.07058824 0.04705882 0.05882353
+## 
+## $mids
+## [1]  2.5  7.5 12.5 17.5
+## 
+## $xname
+## [1] &quot;x&quot;
+## 
+## $equidist
+## [1] TRUE
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;histogram&quot;</code></pre>
+<p>Définition des valeurs sorties:</p>
+<blockquote>
+<p>$breaks: les bornes des intervalles<br />
+$counts: le nombre de valeurs par intervalle<br />
+$density: valeurs de la fonction de densité<br />
+$mids: valeur centrale des intervalles<br />
+$xname: nom de la variable x, tel qu’il est affiché sur le graphe<br />
+$equidist: vrai si les intervalles sont équidistants</p>
+</blockquote>
+</div>
+<div id="la-fonction-barplot" class="section level3 hasAnchor" number="6.2.5">
+<h3><span class="header-section-number">6.2.5</span> La fonction barplot()<a href="les-graphiques-avec-r.html#la-fonction-barplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La fonction <code>barplot()</code> est utilisée pour créer un <strong>graphique à barres</strong>, également appelé un <strong>diagramme à barres</strong>. Le diagramme à barres est un graphique qui affiche des données catégorielles sous forme de barres rectangulaires, où la hauteur de chaque barre représente une <em>mesure quantitative associée à cette catégorie</em>.</p>
+<p>La fonction <code>barplot()</code> prend en entrée un vecteur ou une matrice de données, où chaque colonne représente une catégorie et chaque ligne représente une mesure quantitative pour cette catégorie. Les arguments optionnels peuvent être utilisés pour personnaliser le graphique, tels que les couleurs des barres, les étiquettes des axes, la légende, etc.</p>
+<p>Voici un exemple d’utilisation de la fonction <code>barplot()</code> pour créer un graphique à barres à partir d’une matrice de données “mat”:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="les-graphiques-avec-r.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer une matrice de données</span></span>
+<span id="cb122-2"><a href="les-graphiques-avec-r.html#cb122-2" aria-hidden="true" tabindex="-1"></a>mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb122-3"><a href="les-graphiques-avec-r.html#cb122-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Hommes&quot;</span>, <span class="st">&quot;Femmes&quot;</span>)</span>
+<span id="cb122-4"><a href="les-graphiques-avec-r.html#cb122-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Groupe A&quot;</span>, <span class="st">&quot;Groupe B&quot;</span>, <span class="st">&quot;Groupe C&quot;</span>)</span>
+<span id="cb122-5"><a href="les-graphiques-avec-r.html#cb122-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb122-6"><a href="les-graphiques-avec-r.html#cb122-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un graphique à barres</span></span>
+<span id="cb122-7"><a href="les-graphiques-avec-r.html#cb122-7" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(mat, <span class="at">main =</span> <span class="st">&quot;Graphique à barres&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Groupes&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Mesures&quot;</span>, </span>
+<span id="cb122-8"><a href="les-graphiques-avec-r.html#cb122-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">legend.text =</span> <span class="fu">rownames</span>(mat))</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/barplot-1.png" width="672" /></p>
+<p>Dans cet exemple, la fonction <code>barplot()</code> crée un graphique à barres à partir de la matrice de données <strong>mat</strong>. La fonction <code>rownames()</code> et <code>colnames()</code> sont utilisées pour nommer <em>les lignes et les colonnes de la matrice</em>, qui seront utilisées comme <em>étiquettes</em> d’axe dans le graphique. La fonction <code>barplot()</code> utilise les arguments optionnels pour personnaliser le graphique, tels que les couleurs des barres, les étiquettes des axes, la légende, etc.</p>
+</div>
+<div id="la-fonction-boxplot" class="section level3 hasAnchor" number="6.2.6">
+<h3><span class="header-section-number">6.2.6</span> La fonction boxplot()<a href="les-graphiques-avec-r.html#la-fonction-boxplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La fonction <code>boxplot()</code> est utilisée pour créer un graphique en <strong>boîte à moustache</strong>. Le graphique affiche la <strong>distribution d’un ensemble de données numériques à l’aide de cinq mesures statistiques : la médiane, les quartiles supérieurs et inférieurs, ainsi que les valeurs min et max</strong>. Les “moustaches” représentent des <em>intervalles de confiance</em> pour la distribution de données.</p>
+<p>La fonction <code>boxplot()</code> prend en entrée un ou plusieurs vecteurs de données numériques, où chaque vecteur représente une variable à comparer. Les arguments optionnels peuvent être utilisés pour personnaliser le graphique, tels que les couleurs, les étiquettes des axes, la légende, etc.</p>
+<p>Voici un exemple d’utilisation de la fonction <code>boxplot()</code> pour créer un boxplot à partir d’un vecteur de données “x”:</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="les-graphiques-avec-r.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un vecteur de données</span></span>
+<span id="cb123-2"><a href="les-graphiques-avec-r.html#cb123-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)</span>
+<span id="cb123-3"><a href="les-graphiques-avec-r.html#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="les-graphiques-avec-r.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un graphique en boîte</span></span>
+<span id="cb123-5"><a href="les-graphiques-avec-r.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x, <span class="at">main =</span> <span class="st">&quot;boîte à moustache&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Valeurs&quot;</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/boxplot-1.png" width="672" /></p>
+<p>Dans cet exemple, la fonction <code>boxplot()</code> crée un graphique à partir du vecteur de données “x”. La fonction utilise les arguments optionnels pour personnaliser le graphique, tels que le titre du graphique et l’étiquette de l’axe y. Les cinq mesures statistiques du vecteur de données sont représentées par la boîte et les moustaches. La boîte représente le quartile supérieur et le quartile inférieur, avec une ligne à l’intérieur représentant la médiane. Les moustaches représentent les valeurs minimum et maximum, avec des points éventuels représentant des valeurs aberrantes.</p>
+</div>
+<div id="les-fonctions-de-tracé-de-courbes-de-niveau" class="section level3 hasAnchor" number="6.2.7">
+<h3><span class="header-section-number">6.2.7</span> Les fonctions de tracé de courbes de niveau<a href="les-graphiques-avec-r.html#les-fonctions-de-tracé-de-courbes-de-niveau" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les fonctions de tracé de courbes de niveau permettent de <strong>représenter des données en 3 dimensions sur un plan en deux dimensions</strong>. Cela se fait en créant des courbes de niveau qui relient les points d’une surface ayant la même valeur.</p>
+<p>Sous R, les fonctions de tracé de courbes de niveau les plus courantes sont <code>contour()</code> et <code>filled.contour()</code>.</p>
+<p>La fonction <code>contour()</code> <strong>trace des courbes de niveau</strong> sur un graphique en deux dimensions. Elle prend en entrée une matrice de données ainsi que des arguments supplémentaires qui définissent le nombre et les niveaux de courbes de niveau à afficher.</p>
+<p>La fonction <code>filled.contour()</code> <strong>trace également des courbes de niveau, mais remplit les zones</strong> entre les courbes de niveau avec des couleurs pour indiquer les variations de valeur de la surface. Cette fonction prend en entrée une matrice de données ainsi que des arguments supplémentaires qui définissent les niveaux et la palette de couleurs à utiliser pour remplir les zones entre les courbes de niveau.</p>
+<p>Voici un exemple avec le jeu de données volcano qui contient des données topographiques sur le volcan Maunga Whau (New Zealand) selon une grille régulière de 10m x 10m.</p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="les-graphiques-avec-r.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(volcano)</span>
+<span id="cb124-2"><a href="les-graphiques-avec-r.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Color palette</span></span>
+<span id="cb124-3"><a href="les-graphiques-avec-r.html#cb124-3" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">hcl.colors</span>(<span class="dv">10</span>, <span class="st">&quot;YlOrRd&quot;</span>)</span>
+<span id="cb124-4"><a href="les-graphiques-avec-r.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contour</span>(volcano,</span>
+<span id="cb124-5"><a href="les-graphiques-avec-r.html#cb124-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> cols)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/data_volcano-1.png" width="672" /></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="les-graphiques-avec-r.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filled.contour</span>(volcano,</span>
+<span id="cb125-2"><a href="les-graphiques-avec-r.html#cb125-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">nlevels =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/data_volcano-2.png" width="672" /></p>
+</div>
+<div id="les-fonctions-de-cartographie" class="section level3 hasAnchor" number="6.2.8">
+<h3><span class="header-section-number">6.2.8</span> Les fonctions de cartographie<a href="les-graphiques-avec-r.html#les-fonctions-de-cartographie" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les fonctions cartographiques sous R permettent de créer et de manipuler des cartes géographiques. Voici quelques-unes des fonctions les plus couramment utilisées :</p>
+<ul>
+<li><p><strong>maps</strong>: cette fonction permet de tracer des cartes géographiques en utilisant des données du package maps. Il est possible de personnaliser les couleurs, les frontières et les légendes de la carte.</p></li>
+<li><p><strong>mapdata</strong>: cette fonction permet de télécharger des données géographiques pour une région spécifique. Les données peuvent être utilisées pour tracer des cartes en utilisant la fonction maps.</p></li>
+<li><p><strong>ggmap</strong>: cette fonction permet de superposer des données sur des cartes géographiques provenant de Google Maps. Elle peut être utilisée pour créer des cartes interactives.</p></li>
+<li><p><strong>ggplot2</strong>: ce package offre de nombreuses fonctionnalités pour la création de cartes géographiques en utilisant la librairie ggplot2. Il permet de créer des cartes thématiques avec des couleurs et des symboles personnalisés.</p></li>
+<li><p><strong>leaflet</strong>: cette fonction permet de créer des cartes interactives à l’aide de la bibliothèque JavaScript Leaflet. Elle offre des options pour personnaliser les marqueurs, les popups et les couches de carte.</p></li>
+<li><p><strong>raster</strong>: cette fonction permet de manipuler des données raster telles que des images satellites et de créer des cartes à partir de ces données. Elle offre des fonctions pour la classification, la visualisation et la superposition de données raster.</p></li>
+<li><p><strong>sp</strong>: ce package offre des fonctionnalités pour la manipulation de données géographiques vectorielles. Il permet de créer des cartes thématiques et d’ajouter des données provenant de sources externes.</p></li>
+</ul>
+<p>Ces fonctions cartographiques peuvent être combinées pour créer des cartes géographiques personnalisées et interactives en fonction des besoins de l’utilisateur.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="les-graphiques-avec-r.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span></code></pre></div>
+<pre><code>## 
+## Attachement du package : &#39;maps&#39;</code></pre>
+<pre><code>## L&#39;objet suivant est masqué depuis &#39;package:plyr&#39;:
+## 
+##     ozone</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="les-graphiques-avec-r.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapdata)</span>
+<span id="cb129-2"><a href="les-graphiques-avec-r.html#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb129-3"><a href="les-graphiques-avec-r.html#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="les-graphiques-avec-r.html#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Charger les données de population par ville</span></span>
+<span id="cb129-5"><a href="les-graphiques-avec-r.html#cb129-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;world.cities&quot;</span>)</span>
+<span id="cb129-6"><a href="les-graphiques-avec-r.html#cb129-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-7"><a href="les-graphiques-avec-r.html#cb129-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraire les villes françaises avec une population supérieure à 100 000</span></span>
+<span id="cb129-8"><a href="les-graphiques-avec-r.html#cb129-8" aria-hidden="true" tabindex="-1"></a>france.cities <span class="ot">&lt;-</span> <span class="fu">subset</span>(world.cities, country.etc <span class="sc">==</span> <span class="st">&quot;France&quot;</span> <span class="sc">&amp;</span> pop <span class="sc">&gt;</span> <span class="dv">100000</span>)</span>
+<span id="cb129-9"><a href="les-graphiques-avec-r.html#cb129-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-10"><a href="les-graphiques-avec-r.html#cb129-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Tracer la carte de la France</span></span>
+<span id="cb129-11"><a href="les-graphiques-avec-r.html#cb129-11" aria-hidden="true" tabindex="-1"></a>fr.map <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="at">database =</span> <span class="st">&quot;france&quot;</span>, <span class="at">fill =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">bg =</span> <span class="st">&quot;white&quot;</span>, <span class="at">lty =</span> <span class="dv">0</span>,</span>
+<span id="cb129-12"><a href="les-graphiques-avec-r.html#cb129-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">54</span>), <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/carto-1.png" width="672" /></p>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="les-graphiques-avec-r.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Créer un graphique ggplot avec la carte de la France</span></span>
+<span id="cb130-2"><a href="les-graphiques-avec-r.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter des cercles proportionnels pour chaque ville en fonction de leur population</span></span>
+<span id="cb130-3"><a href="les-graphiques-avec-r.html#cb130-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb130-4"><a href="les-graphiques-avec-r.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">data =</span> fr.map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
+<span id="cb130-5"><a href="les-graphiques-avec-r.html#cb130-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb130-6"><a href="les-graphiques-avec-r.html#cb130-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> france.cities, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">size =</span> pop), </span>
+<span id="cb130-7"><a href="les-graphiques-avec-r.html#cb130-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb130-8"><a href="les-graphiques-avec-r.html#cb130-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;Taille de la population&quot;</span>)<span class="sc">+</span></span>
+<span id="cb130-9"><a href="les-graphiques-avec-r.html#cb130-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">10</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">54</span>)) <span class="sc">+</span></span>
+<span id="cb130-10"><a href="les-graphiques-avec-r.html#cb130-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>)) </span></code></pre></div>
+<p><img src="R-bookdown_files/figure-html/carto-2.png" width="672" /></p>
+<p><strong>Exercice 4:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Créez un graphique en nuage de points pour représenter la relation entre le poids et la consommation de carburant de différentes voitures en utilisant le jeu de données mtcars.</p></li>
+<li><p>Créez un graphique en barres empilées pour représenter la répartition des espèces de fleurs dans le jeu de données iris.</p></li>
+<li><p>Créez un graphique en boîtes pour comparer les espérances de vie dans différents pays dans le jeu de données gapminder.</p></li>
+<li><p>Créez un graphique en secteurs pour représenter la répartition des habitants par continent dans le jeu de données gapminder.</p></li>
+</ol>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="régression-linéaire.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="liens-utiles.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-graph.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["R bookdown.pdf", "R bookdown.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
