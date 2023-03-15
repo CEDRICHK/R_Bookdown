@@ -1,0 +1,95 @@
+# Statistiques descriptives avec R
+Les statistiques descriptives sont un ensemble de méthodes utilisées pour analyser et interpréter des données. Avec R, vous pouvez facilement réaliser des analyses statistiques descriptives, telles que les **moyennes**, les **écarts-types**, les **quantiles** et bien plus encore. Vous pouvez également créer des graphiques et des tableaux pour mieux comprendre et interpréter vos données.   
+
+## Médianes et quantiles
+
+Sous R, il est possible de calculer la médiane et les quantiles d'un vecteur ou d'une colonne d'un data.frame à l'aide de fonctions de base. Voici quelques explications:
+
+- La **médiane** est la valeur centrale d'un ensemble de données triées par ordre croissant ou décroissant. Elle divise l'ensemble en deux parties égales. En R, la fonction `median()` permet de calculer la médiane d'un vecteur ou d'une colonne d'un data.frame.
+
+```{r median}
+#Création d'un vecteur
+x <- c(3, 5, 6, 9, 10, 12, 15, 18, 19, 20)
+
+# Calcul de la médiane
+median(x)
+```
+
+Le résultat sera 11, la valeur centrale du vecteur trié par ordre croissant.
+
+ - Les **quantiles** sont des valeurs qui divisent l'ensemble de données en parts égales. Par exemple, le premier quartile (Q1) est la valeur qui divise les données en deux parties égales, la première moitié ayant des valeurs inférieures ou égales à Q1, et la seconde moitié ayant des valeurs supérieures ou égales à Q1. En R, la fonction `quantile()` permet de calculer les quantiles d'un vecteur ou d'une colonne d'un data.frame.
+ 
+```{r quantiles}
+# Calcul des quartiles d'un vecteur
+quantile(x, probs = c(0.25, 0.5, 0.75))
+
+```
+
+Ce qui signifie que le premier quartile est 6.75, la médiane est 11, et le troisième quartile est 17.25.
+
+## La moyenne et la somme
+
+Sous R, la moyenne et la somme sont deux concepts importants en statistiques et en programmation. Voici comment les calculer :
+
+- La **moyenne** est la somme de tous les éléments d'un ensemble de données, divisée par le nombre total d'éléments. En R, vous pouvez calculer la moyenne à l'aide de la fonction `mean()`.
+
+```{r mean}
+# Créer un vecteur de données
+x <- c(1, 2, 3, 4, 5)
+
+# Calculer la moyenne
+mean(x)
+```
+
+Dans cet exemple, la moyenne de 1, 2, 3, 4 et 5 est 3.
+
+- La **somme** est la valeur totale de tous les éléments d'un ensemble de données. En R, vous pouvez calculer la somme à l'aide de la fonction `sum()`.
+
+```{r sum}
+# Créer un vecteur de données
+x <- c(1, 2, 3, 4, 5)
+
+# Calculer la somme
+sum(x)
+
+```
+
+Dans cet exemple, la somme de 1, 2, 3, 4 et 5 est 15.
+
+
+## La variance et l'écart-type
+
+La variance et l'écart-type sont deux mesures importantes de la **dispersion des données**.   
+
+- La **variance** est une mesure de la dispersion des données par *rapport à leur moyenne* (moyenne des carrés des écarts entre chaque valeur de x
+et la moyenne). En R, vous pouvez calculer la variance à l'aide de la fonction `var()`.
+
+```{r var}
+# Créer un vecteur de données
+x <- c(1, 2, 3, 4, 5)
+
+# Calculer la variance
+var(x)
+```
+Dans cet exemple, la variance de 1, 2, 3, 4 et 5 est 2,5.
+
+- L'écart-type est une mesure de la dispersion des données qui est *la racine carrée de la variance*, qui a l’avantage de
+s’exprimer dans la même unité que la moyenne et que les données. En R, vous pouvez calculer l'écart-type à l'aide de la fonction `sd()`.
+
+
+```{r sd}
+# Créer un vecteur de données
+x <- c(1, 2, 3, 4, 5)
+
+# Calculer l'écart-type
+sd(x)
+```
+Dans cet exemple, l'écart-type de 1, 2, 3, 4 et 5 est 1,581139.
+
+>
+Il est important de noter que ces fonctions fonctionnent également avec des matrices et des tableaux, où elles effectueront le calcul par colonne par défaut. Vous pouvez également spécifier l'argument "na.rm" pour exclure les valeurs manquantes.
+
+**Exercices 2:**
+
+Sur le jeu de données "ChickWeight", utilisez les fonctions que l’on
+vient de voir pour faire une description statistique de la colonne weight.

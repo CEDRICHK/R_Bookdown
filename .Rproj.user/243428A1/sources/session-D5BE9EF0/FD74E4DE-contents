@@ -1,0 +1,65 @@
+# Manipulation des données sous R
+
+## importer un jeu de données sous R
+
+Il existe plusieurs façons d'importer des jeux de données sous R. La méthode la plus courante est d'utiliser la fonction `read.csv()` ou `read.table()` pour importer des *fichiers CSV* ou des *fichiers texte tabulés*. Ces fonctions peuvent lire des fichiers locaux ou des fichiers à partir d'URL. Vous pouvez également utiliser la fonction `read.xlsx()` pour importer des *fichiers Excel*. Les autres méthodes d'importation comprennent l'utilisation des packages R spécialisés pour importer des données à partir de *bases de données, d'API Web et d'autres sources*. 
+
+>
+read.csv("chemin/vers/le/fichier.csv", header = TRUE, sep = ",")
+
+La fonction ci-dessus prend un paramètre obligatoire qui est le nom de fichier externe en format texte. Il doit être fourni entre guillemets et peut inclure le chemin d’accès au fichier si celui-ci ne se trouve pas dans le répertoire de travail. On peut trouver d'autres paramètres optionnels, comme:
+
+|Paramètre|Description|
+|:---------|:---------|
+|header|Une valeur logique (T/F) qui indique si la première ligne contient les noms des colonnes, sinon elles s’appelleront V1, V2… header=F par défaut.|
+|sep|Le caractère séparant les colonnes du tableau. Par défaut c’est l’espace. Si votre fichier est délimité par des tabulations, utilisez sep= "\t".|
+|dec|Le caractère utilisé comme séparateur decimal, par défaut c’est le "." mais vous pouvez définir la "," si votre tableau est au format français.|
+|row.names|Les noms des lignes. Cela peut être un vecteur de même longueur que le nombre de lignes du tableau, mais on utilise souvent le numéro d’une colonne (généralement la première) qui sert alors de label aux lignes et se trouve exclue du tableau.|
+
+Il existe plusieurs fonctions utiles pour inspecter un tableau de données sous R:
+
+>
+- `str()` peut être utilisée pour afficher la structure d'un tableau de données. 
+- `summary()` peut être utilisée pour afficher des statistiques descriptives sur chaque variable. 
+- `head()` et `tail()` peuvent être utilisées pour afficher les premières et dernières lignes d'un tableau de données. 
+- `dim()` peut être utilisée pour afficher le nombre de lignes et de colonnes dans un tableau de données. 
+- `colnames()` peut être utilisée pour afficher les noms des colonnes.
+
+R comprend un certain nombre de *jeux de données intégrés*. Ces jeux de données sont généralement organisés sous **forme de tableaux ou de matrices** et peuvent contenir des *informations sur les variables, les observations et les caractéristiques de chaque observation*. Les jeux de données intégrés à R incluent des données sur le comportement des animaux, le climat, la géographie, la finance et bien plus encore. Les données peuvent être analysées et manipulées à l'aide de fonctions intégrées à R. Il existe également de nombreux packages tiers qui offrent des fonctionnalités supplémentaires pour traiter les données.   
+On utilise ici le jeu de données **ChickWeight** qui donne les résultats d'une expérimentation visant à comparer le poids des poussins à différents âges en fonction du régime alimentaire reçu. 
+
+
+```{r dataset}
+# Charger le jeu de données
+data("ChickWeight")
+
+# Afficher les premières lignes du jeu de données
+head(ChickWeight)
+
+# Afficher les informations sur les variables du jeu de données
+str(ChickWeight)
+
+# Afficher une description statistique des variables du jeu de données
+summary(ChickWeight)
+```
+
+
+## Exporter un jeu de données sous R
+
+Vous pouvez exporter les jeux de données sous R vers d'autres formats de fichier, tels que *CSV, TXT ou XLS*. Vous pouvez également exporter des jeux de données vers des formats spécifiques à des applications, tels que SPSS, SAS ou Stata. La fonction `write.csv()` est l'une des fonctions les plus couramment utilisées pour exporter des jeux de données sous R. Elle permet d'exporter des jeux de données vers un fichier CSV.
+
+>
+write.csv(data, file = "data.csv", row.names = FALSE, na = "")
+
+- La fonction ci-dessus prend le jeu de données *data* à exporter.   
+- Le paramètre *file* sauve le jeu de données data sous "data.csv".   
+- Le paramètre *row.names* indique si les noms de lignes sont incluses ou non dans le fichier csv.   
+- Le paramètre *na* indique la valeur à utiliser pour les valeurs manquantes.
+
+**Exercice 1:**
+
+1. Charger le jeu de données prédéfini **mtcars** en utilisant la fonction `data()` de R. Vous pouvez utiliser l'aide R associée à mtcars pour en savoir plus. Explorer le data.frame mtcars en utilisant les fonctions `str()`, `head()`, `summary()` et `dim()`.
+2. Exporter le data.frame mtcars en format texte dans le répertoire de travail sous le nom de **mtcars.csv**. Ensuite, vérifier la présence du fichier *mtcars.csv* dans le répertoire de travail et l'ouvrir avec un tableur. 
+3. Dans ce tableur, ajouter une douzième colonne intitulée **mpg_level** contenant les valeurs *"faible"* pour les voitures ayant une consommation en miles par gallon (mpg) inférieure à 20, *"moyenne"* pour celles ayant une consommation comprise entre 20 et 30, et *"élevée"* pour celles ayant une consommation supérieure à 30. Enregistrer ce fichier au format texte délimité par des *tabulations* sous le nom **mtcars2.csv**.
+4. Puis retourner sous R et importer ce fichier de données dans un nouveau data.frame appelé **mtcars_new**. Vérifiez son contenu sous R avec `dim()`, `head()`, etc. On voit que mtcars n'a plus comme nom de ligne, les marques de voitures, mais des chiffres au format caractères.   
+Essayez donc d'attribuer les noms de lignes aux marques de voitures et supprimer la colonne X.

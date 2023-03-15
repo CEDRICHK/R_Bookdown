@@ -1,0 +1,5 @@
+"0","data(volcano)"
+"0","# Color palette"
+"0","cols <- hcl.colors(10, ""YlOrRd"")"
+"0","contour(volcano,"
+"0","        col = cols)"

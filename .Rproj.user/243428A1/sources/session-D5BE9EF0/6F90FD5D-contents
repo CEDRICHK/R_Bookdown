@@ -1,0 +1,57 @@
+---
+title: "Exercice 1 - solution"
+author: "Cédric HASSEN-KHODJA"
+date: '`r Sys.Date()`'
+output: pdf_document
+---
+
+1. Charger le jeu de données prédéfini **mtcars** en utilisant la fonction `data()` de R. Vous pouvez utiliser l'aide R associée à mtcars pour en savoir plus. Explorer le data.frame mtcars en utilisant les fonctions `str()`, `head()`, `summary()` et `dim()`.
+
+
+```{r ex1-1}
+#chargement du jeu de données avec l'aide de la fonction data
+data("mtcars")
+
+#Affiche les dimensions du jeu de données
+dim(mtcars)
+
+#Affiche la structure du jeu de données
+str(mtcars)
+
+#Affiche les premières lignes du jeu de données
+head(mtcars)
+
+#Affiche les stat descriptives sur le jeu de données
+summary(mtcars)
+```
+
+2. Exporter le data.frame mtcars en format texte dans le répertoire de travail sous le nom de **mtcars.csv**. Ensuite, vérifier la présence du fichier *mtcars.* dans le répertoire de travail et l'ouvrir avec un tableur.
+
+```{r ex1-2}
+#export du df mtcars
+write.csv(x = mtcars, file = "./mtcars.csv", row.names = TRUE)
+```
+
+3. Dans ce tableur, ajouter une douzième colonne intitulée **mpg_level** contenant les valeurs *"faible"* pour les voitures ayant une consommation en miles par gallon (mpg) inférieure à 20, *"moyenne"* pour celles ayant une consommation comprise entre 20 et 30, et *"élevée"* pour celles ayant une consommation supérieure à 30. Enregistrer ce fichier au format texte délimité par des *tabulations* sous le nom **mtcars2.csv**.
+
+> Cette opération est à faire dans le tableur !
+
+4. Puis retourner sous R et importer ce fichier de données dans un nouveau data.frame appelé **mtcars_new**. Vérifiez son contenu sous R avec `dim()`, `head()`, etc. On voit que mtcars n'a plus comme nom de ligne, les marques de voitures, mais des chiffres au format caractères.   
+Essayez donc d'attribuer les noms de lignes aux marques de voitures et supprimer la colonne X.
+
+```{r ex1-4}
+#import du fichier mtcars2sous R
+mtcars_new <- read.csv("./mtcars2.csv", sep = "\t")
+
+#Affiche les dimensions du jeu de données
+dim(mtcars_new)
+
+#Affiche la structure du jeu de données
+str(mtcars_new)
+
+#affecter la marque de voitures comme index du df
+row.names(mtcars_new) <- mtcars_new$X
+
+# supprimer la colonne X
+mtcars_new$X <- NULL
+```
