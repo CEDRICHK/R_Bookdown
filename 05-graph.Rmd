@@ -9,7 +9,7 @@ output:
 
 RStudio possède une fenêtre graphique intégrée où les graphiques peuvent être affichés. Cette fenêtre peut être agrandie, réduite ou mise en plein écran, et permet également de zoomer sur des parties spécifiques du graphique. Cette fenêtre permet également d'enregistrer le graphique dans différents formats de fichiers, tels que PNG, PDF, JPEG, SVG, etc.   
 
-![Affichage d'un graphique sous RStudio!](docs/R-bookdown_files/figure-html/rstudio_graph.png)
+![Affichage d'un graphique sous RStudio!](R-bookdown_files/figure-html/rstudio_graph.png)
 
 On peut aussi, avant l’appel à la fonction graphique, ouvrir une nouvelle fenêtre graphique avec la fonction `x11()` qui fonctionne sur Linux et Windows ou son équivalent `windows()` (Windows uniquement), ou encore `quartz()` sous MacOS. Le graphique s’affichera toujours dans la dernière fenêtre graphique ouverte qui devient le périphérique (device) actif.
 On peut également ouvrir directement un fichier graphique avec la fonction `pdf()`, ou `jpeg()`… Taper **?Devices** pour connaître les différents périphériques utilisables.   
